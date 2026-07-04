@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akwat Papa Printing Services | Quality Prints in Kumasi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --wine: #7B2D3E; --wine-dark: #4A1020; --wine-light: #A3405A;
+      --black: #0D0D0D; --white: #FFFFFF; --off-white: #F8F5F2;
+      --gray: #6B6B6B; --light-gray: #E8E4E0; --gold: #C9A84C;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(13,13,13,0.97); backdrop-filter: blur(10px); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 70px; border-bottom: 2px solid var(--wine); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { width: 48px; height: 48px; object-fit: contain; }
+    .nav-logo-text span:first-child { display: block; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; color: var(--white); }
+    .nav-logo-text span:last-child { font-size: 10px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--wine) !important; color: var(--white) !important; padding: 8px 20px; border-radius: 4px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 25px; height: 2px; background: var(--white); }
+
+    #home { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; padding: 100px 5% 60px; }
+    .hero-bg-img { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-bg-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,13,13,0.93) 0%, rgba(74,16,32,0.85) 40%, rgba(13,13,13,0.7) 100%); }
+    .hero-content { position: relative; z-index: 2; max-width: 600px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    .hero-eyebrow span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+    .hero-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 68px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+    .hero-title em { font-style: normal; color: var(--wine-light); }
+    .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 40px; max-width: 500px; font-weight: 300; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary { background: var(--wine); color: var(--white); padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s; border: 2px solid var(--wine); }
+    .btn-primary:hover { background: var(--wine-light); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--white); padding: 14px 32px; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 14px; transition: all 0.3s; border: 2px solid rgba(255,255,255,0.5); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+    .hero-stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 28px; color: var(--white); }
+    .hero-stat span { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase; }
+
+    section { padding: 100px 5%; }
+    .section-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .section-label span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--wine); font-weight: 600; }
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--wine); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--black); line-height: 1.2; margin-bottom: 16px; }
+    .section-subtitle { font-size: 16px; color: var(--gray); line-height: 1.7; max-width: 520px; font-weight: 300; }
+
+    #services { background: var(--off-white); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+    .service-category { margin-bottom: 52px; }
+    .category-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--wine); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--light-gray); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .service-card { background: var(--white); border-radius: 10px; overflow: hidden; border: 1px solid var(--light-gray); transition: all 0.3s; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,45,62,0.12); }
+    .service-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .service-card-body { padding: 18px; }
+    .service-tag { display: inline-block; background: rgba(123,45,62,0.08); color: var(--wine); font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 8px; }
+    .service-card-body h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+    .service-card-body p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    #gallery { background: var(--white); }
+    .gallery-header { margin-bottom: 48px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gallery-item { border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; transition: all 0.3s; }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; min-height: 220px; display: block; transition: transform 0.4s; }
+    .gallery-item:nth-child(1) img, .gallery-item:nth-child(4) img { min-height: 300px; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(74,16,32,0.7), transparent 50%); }
+    .gallery-label { position: absolute; bottom: 14px; left: 14px; color: white; font-size: 13px; font-weight: 600; }
+
+    #pricing { background: var(--black); text-align: center; }
+    #pricing .section-title { color: var(--white); }
+    #pricing .section-label span { color: var(--gold); }
+    #pricing .section-label::before { background: var(--gold); }
+    .pricing-card { max-width: 560px; margin: 48px auto 0; background: rgba(123,45,62,0.12); border: 1px solid rgba(123,45,62,0.4); border-radius: 12px; padding: 52px 48px; }
+    .pricing-icon { font-size: 52px; margin-bottom: 24px; }
+    .pricing-card h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--white); font-weight: 700; margin-bottom: 16px; }
+    .pricing-card p { color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 36px; }
+    .pricing-features { list-style: none; margin-bottom: 40px; text-align: left; display: flex; flex-direction: column; gap: 12px; }
+    .pricing-features li { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.7); font-size: 14px; }
+    .pricing-features li::before { content: '✓'; width: 22px; height: 22px; background: var(--wine); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; flex-shrink: 0; }
+    .whatsapp-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s; }
+    .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); }
+
+    #contact { background: var(--off-white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+    .contact-item-icon { width: 44px; height: 44px; background: var(--wine); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .contact-item-text strong { display: block; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; font-weight: 600; }
+    .contact-item-text a, .contact-item-text span { font-size: 15px; color: var(--black); text-decoration: none; font-weight: 500; }
+    .contact-item-text a:hover { color: var(--wine); }
+    .contact-form { background: var(--white); border-radius: 12px; padding: 40px; border: 1px solid var(--light-gray); }
+    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 28px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 16px; border: 1px solid var(--light-gray); border-radius: 6px; font-size: 14px; font-family: 'Inter', sans-serif; color: var(--black); background: var(--white); transition: border-color 0.3s; outline: none; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--wine); }
+    .form-group textarea { height: 120px; resize: vertical; }
+    .form-submit { width: 100%; background: var(--wine); color: var(--white); padding: 14px; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+    .form-submit:hover { background: var(--wine-light); transform: translateY(-2px); }
+
+    footer { background: var(--black); padding: 48px 5% 28px; border-top: 2px solid var(--wine); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; gap: 24px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; }
+    .footer-logo img { width: 44px; height: 44px; object-fit: contain; }
+    .footer-logo-text span:first-child { display: block; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 13px; color: var(--white); }
+    .footer-logo-text span:last-child { font-size: 10px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+    .footer-links { display: flex; gap: 28px; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 12px; }
+    .footer-bottom span { color: var(--wine-light); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--black); padding: 20px; gap: 16px; border-bottom: 2px solid var(--wine); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-content { max-width: 100%; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 2; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pricing-card { padding: 36px 24px; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+    @media (max-width: 480px) {
+      section { padding: 70px 4%; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 1; }
+      .hero-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="logo.jpg" alt="APPS Logo">
+    <div class="nav-logo-text">
+      <span>Akwat Papa</span>
+      <span>Printing Services</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero-bg-img">
+    <img src="shop-front.jpg" alt="Akwat Papa Printing Services">
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span>Aputuogya, Kumasi — Ghana</span></div>
+    <h1 class="hero-title">We Provide Your<br><em>Printing Solutions</em></h1>
+    <p class="hero-subtitle">Your No. 1 Printing Solution in Kumasi. From DTF printing to vehicle branding, embroidery to photo shoots — we deliver quality that makes your brand stand out.</p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn-primary">Our Services</a>
+      <a href="#contact" class="btn-outline">Get a Quote</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>5+</strong><span>Years Experience</span></div>
+      <div class="hero-stat"><strong>500+</strong><span>Happy Clients</span></div>
+      <div class="hero-stat"><strong>40+</strong><span>Services</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label"><span>What We Do</span></div>
+      <h2 class="section-title">Our Printing Services</h2>
+      <p class="section-subtitle">Over 40 professional printing and design services for all your needs.</p>
+    </div>
+    <a href="#contact" class="btn-primary">Get a Quote</a>
+  </div>
+
+  <!-- Fabric & Apparel -->
+  <div class="service-category">
+    <div class="category-title">👕 Fabric & Apparel</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="dtf-printing.jpg" alt="DTF Printing">
+        <div class="service-card-body"><span class="service-tag">Popular</span><h3>DTF Printing</h3><p>A2 Direct-to-Film printing for vibrant, durable transfers on any fabric type.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="tshirt-front.jpg" alt="T-Shirt Printing">
+        <div class="service-card-body"><h3>T-Shirt Printing</h3><p>Custom t-shirt printing for businesses, salons, groups and events.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="cloth-printing.jpg" alt="Cloth Printing">
+        <div class="service-card-body"><h3>Cloth Printing</h3><p>Beautiful custom designs printed directly onto fabric and cloth materials.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="funeral-cloth.jpg" alt="Funeral Cloth Printing">
+        <div class="service-card-body"><h3>Funeral Cloth Printing</h3><p>Custom funeral cloth printed with the portrait and details of the deceased.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="embroidery.jpg" alt="Embroidery">
+        <div class="service-card-body"><span class="service-tag">Premium</span><h3>Embroidery</h3><p>Professional embroidery for uniforms, caps, bags and corporate merchandise.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="uniforms.jpg" alt="Workwear Printing">
+        <div class="service-card-body"><h3>Workwear & School Uniforms</h3><p>Branded uniforms, workwear and school uniform printing and embroidery.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Large Format & Signage -->
+  <div class="service-category">
+    <div class="category-title">🎌 Large Format & Signage</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="banner-printing.jpg" alt="Banner Printing">
+        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Banner & Flex Printing</h3><p>Large format banners and flex prints for events, promotions and advertising.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="large-format-printing.jpg" alt="Poster Printing">
+        <div class="service-card-body"><h3>Poster Printing</h3><p>Eye-catching posters for funerals, events, churches and promotions.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="vehicle-branding1.jpg" alt="Vehicle Branding">
+        <div class="service-card-body"><span class="service-tag">Premium</span><h3>Vehicle Branding</h3><p>Full vehicle wraps and branding to promote your business on the road.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="vehicle-branding2.jpg" alt="Vehicle Branding Side">
+        <div class="service-card-body"><h3>Truck & Van Branding</h3><p>Complete truck and van body branding with vibrant, weather-resistant prints.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Funeral Items -->
+  <div class="service-category">
+    <div class="category-title">🕊️ Funeral & Memorial Items</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="funeral-poster.jpg" alt="Funeral Poster">
+        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Funeral Announcement Posters</h3><p>Respectful and beautifully designed funeral announcement posters.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="funeral-fan.jpg" alt="Funeral Fan">
+        <div class="service-card-body"><h3>Funeral Fans</h3><p>Custom printed hand fans with the portrait and details of the deceased.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="funeral-keychain.jpg" alt="Funeral Keychain">
+        <div class="service-card-body"><h3>Funeral Keychains</h3><p>Custom memorial keychains with photos as lasting remembrance gifts.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="funeral-tshirt.jpg" alt="Funeral T-Shirt">
+        <div class="service-card-body"><h3>Funeral T-Shirts</h3><p>Custom printed memorial t-shirts with portrait and details of the deceased.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="funeral-card.jpg" alt="Funeral Card">
+        <div class="service-card-body"><h3>Funeral Cards & Booklets</h3><p>Professional funeral cards and ceremony booklets for burial services.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="funeral-cloth.jpg" alt="Funeral Cloth">
+        <div class="service-card-body"><h3>Memorial Cloth Printing</h3><p>Custom printed memorial cloth for funeral and remembrance ceremonies.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paper & Cardstock -->
+  <div class="service-category">
+    <div class="category-title">📄 Paper & Cardstock</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="flyer-design.jpg" alt="Brochures & Flyers">
+        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Brochures & Flyers</h3><p>Eye-catching flyers and brochures to promote your business and services.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="business-card.jpg" alt="Business Cards">
+        <div class="service-card-body"><h3>Business Cards</h3><p>Professional business cards that make a lasting first impression.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="product-label.jpg" alt="Product Labels">
+        <div class="service-card-body"><h3>Product Labels</h3><p>Professional labels for bottles, jars, food products and packaging.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="letter-head.jpg" alt="Letterheads">
+        <div class="service-card-body"><h3>Letterheads & Envelopes</h3><p>Branded letterheads and envelopes for official correspondence.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="receipt-design.jpg" alt="Receipt Books">
+        <div class="service-card-body"><h3>Receipt Books</h3><p>Custom receipt books and invoice pads for businesses and traders.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event & Personal -->
+  <div class="service-category">
+    <div class="category-title">💌 Event & Personal</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="birthday-card.jpg" alt="Birthday Cards">
+        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Birthday Cards & Invitations</h3><p>Beautiful birthday cards and invitation designs for all celebrations.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="wedding.jpg" alt="Wedding Cards">
+        <div class="service-card-body"><h3>Wedding Invitation Cards</h3><p>Elegant wedding invitation cards and programs for your special day.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="graduation.jpg" alt="Graduation Cards">
+        <div class="service-card-body"><h3>Graduation Cards & Booklets</h3><p>Professional graduation cards and ceremony booklets for schools.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Branded Merchandise -->
+  <div class="service-category">
+    <div class="category-title">🎁 Branded Merchandise</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="brandedmug.jpg" alt="Branded Mugs">
+        <div class="service-card-body"><h3>Branded Mugs & Cups</h3><p>Custom printed mugs and cups with your logo for gifts and promotions.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="keychain.jpg" alt="Custom Keychains">
+        <div class="service-card-body"><h3>Custom Keychains</h3><p>Personalised photo keychains for gifts, events and memorials.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="sticker.jpg" alt="Stickers">
+        <div class="service-card-body"><h3>Sticker Printing</h3><p>Custom stickers for product labeling, branding and promotions.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="tote-bag.jpg" alt="Branded Bags">
+        <div class="service-card-body"><h3>Branded Bags & Tote Bags</h3><p>Custom printed bags for businesses, events and retail purposes.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="calendar.jpg" alt="Calendars">
+        <div class="service-card-body"><h3>Calendars & Hang Tags</h3><p>Branded wall calendars and custom hang tags for businesses.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photography Studio -->
+  <div class="service-category">
+    <div class="category-title">📸 Photography Studio</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="photo-shoot1.jpg" alt="Studio Photo Shoot">
+        <div class="service-card-body"><span class="service-tag">New</span><h3>Studio Photo Shoot</h3><p>Professional studio photography for portraits, fashion and beauty shoots.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="photo-shoot2.jpg" alt="Birthday Shoot">
+        <div class="service-card-body"><h3>Birthday & Event Shoots</h3><p>Memorable birthday, wedding, funeral and event photography sessions.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="fashion-shoot.jpg" alt="Fashion Shoot">
+        <div class="service-card-body"><h3>Fashion & Outdoor Shoots</h3><p>Creative fashion, outdoor and portrait photography with professional editing.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="frame-printing.jpg" alt="Frame Printing">
+        <div class="service-card-body"><h3>Photo Printing & Framing</h3><p>High quality photo prints and beautifully framed photos for your home or office.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Services -->
+  <div class="service-category">
+    <div class="category-title">🎨 Design Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="logo-design.jpg" alt="Logo Design">
+        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Logo Design</h3><p>Professional logo design for businesses, schools, churches and organizations.</p></div>
+      </div>
+      <div class="service-card">
+        <img src="graphic-design.jpg" alt="Graphic Design">
+        <div class="service-card-body"><h3>Graphic Design</h3><p>Creative graphic design for all your print and digital marketing materials.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header">
+    <div class="section-label"><span>Our Work</span></div>
+    <h2 class="section-title">Print Gallery</h2>
+    <p class="section-subtitle">Real quality printing work from our shop in Aputuogya, Kumasi.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="shop-front.jpg" alt="Akwat Papa Shop">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Our Shop — Aputuogya</span>
+    </div>
+    <div class="gallery-item">
+      <img src="vehicle-branding1.jpg" alt="Vehicle Branding">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Vehicle Branding</span>
+    </div>
+    <div class="gallery-item">
+      <img src="photo-shoot1.jpg" alt="Photo Studio">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Photo Studio</span>
+    </div>
+    <div class="gallery-item">
+      <img src="funeral-tshirt.jpg" alt="Funeral T-Shirt">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Funeral T-Shirt</span>
+    </div>
+    <div class="gallery-item">
+      <img src="funeral-fan.jpg" alt="Funeral Fan">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Funeral Fan</span>
+    </div>
+    <div class="gallery-item">
+      <img src="large-format-printing.jpg" alt="Large Format Printing">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Large Format Printing</span>
+    </div>
+    <div class="gallery-item">
+      <img src="tshirt-front.jpg" alt="T-Shirt Printing">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">T-Shirt Printing</span>
+    </div>
+    <div class="gallery-item">
+      <img src="brandedmug.jpg" alt="Branded Mugs">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Branded Mugs</span>
+    </div>
+    <div class="gallery-item">
+      <img src="df.jpg" alt="Frame Printing">
+      <div class="gallery-overlay"></div>
+      <span class="gallery-label">Frame Printing</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-label"><span>Pricing</span></div>
+  <h2 class="section-title">Flexible Pricing for Every Need</h2>
+  <p class="section-subtitle" style="color:rgba(255,255,255,0.4);margin:0 auto;">We tailor our pricing to match your specific printing needs and budget.</p>
+  <div class="pricing-card">
+    <div class="pricing-icon">💬</div>
+    <h3>Contact Us for Pricing</h3>
+    <p>Every print job is unique. Contact us with your requirements and we'll give you the best quote tailored to your needs and budget.</p>
+    <ul class="pricing-features">
+      <li>Competitive and fair pricing</li>
+      <li>Bulk order discounts available</li>
+      <li>No hidden charges</li>
+      <li>Fast turnaround times</li>
+      <li>Free consultation on your project</li>
+    </ul>
+    <a href="https://wa.me/233240431198?text=Hello! I'd like to get a quote for printing services." class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label"><span>Get In Touch</span></div>
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-subtitle">Ready to start your print project? Reach out to us today.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text"><strong>Location</strong><span>Aputuogya, Opposite Education Office, Kumasi, Ghana</span></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text"><strong>Phone</strong><a href="tel:+233240431198">0240 431 198 / 0592 718 096</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text"><strong>Email</strong><a href="mailto:akwatpapaprints@gmail.com">akwatpapaprints@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div class="contact-item-text"><strong>Working Hours</strong><span>Mon – Sat: 8:00 AM – 6:00 PM</span></div>
+      </div>
+      <a href="https://wa.me/233240431198?text=Hello! I'd like to inquire about your printing services." class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
+    </div>
+    <div class="contact-form">
+      <h3>Send us a Message</h3>
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
+      <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="0240 000 000"></div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service...</option>
+          <optgroup label="Fabric & Apparel">
+            <option>DTF Printing</option><option>T-Shirt Printing</option>
+            <option>Cloth Printing</option><option>Embroidery</option>
+            <option>School Uniform Embroidery</option><option>Workwear Printing</option>
+          </optgroup>
+          <optgroup label="Large Format & Signage">
+            <option>Banner & Flex Printing</option><option>Poster Printing</option>
+            <option>Vehicle Branding</option><option>Truck & Van Branding</option>
+          </optgroup>
+          <optgroup label="Funeral & Memorial Items">
+            <option>Funeral Announcement Posters</option><option>Funeral Fans</option>
+            <option>Funeral Keychains</option><option>Funeral T-Shirts</option>
+            <option>Funeral Cards & Booklets</option><option>Memorial Cloth Printing</option>
+          </optgroup>
+          <optgroup label="Paper & Cardstock">
+            <option>Business Cards</option><option>Brochures & Flyers</option>
+            <option>Product Labels</option><option>Letterheads</option>
+            <option>Envelope Printing</option><option>Receipt Books</option>
+          </optgroup>
+          <optgroup label="Event & Personal">
+            <option>Wedding Invitation Cards</option><option>Birthday Cards & Invitations</option>
+            <option>Graduation Cards & Booklets</option>
+          </optgroup>
+          <optgroup label="Branded Merchandise">
+            <option>Branded Mugs & Cups</option><option>Custom Keychains</option>
+            <option>Sticker Printing</option><option>Branded Bags</option>
+            <option>Calendars</option><option>Hang Tags</option>
+          </optgroup>
+          <optgroup label="Photography">
+            <option>Studio Photo Shoot</option><option>Outdoor Photography</option>
+            <option>Photo Printing & Framing</option><option>Photo Editing</option>
+          </optgroup>
+          <optgroup label="Design Services">
+            <option>Logo Design</option><option>Graphic Design</option>
+          </optgroup>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your printing needs..."></textarea></div>
+      <button class="form-submit" onclick="sendMessage()">Send Message via WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">
+      <img src="logo.jpg" alt="APPS Logo">
+      <div class="footer-logo-text">
+        <span>Akwat Papa Printing Services</span>
+        <span>Aputuogya, Kumasi — Ghana</span>
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Akwat Papa Printing Services. All rights reserved.</p>
+    <p>Your No. 1 Printing Solution — <span>Aputuogya, Kumasi</span></p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  function sendMessage() {
+    const name = document.querySelector('.contact-form input[type="text"]').value;
+    const phone = document.querySelector('.contact-form input[type="tel"]').value;
+    const service = document.querySelector('.contact-form select').value;
+    const message = document.querySelector('.contact-form textarea').value;
+    if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+    const text = `Hello Akwat Papa Printing Services!%0A%0AName: ${name}%0APhone: ${phone}%0AService: ${service || 'Not specified'}%0AMessage: ${message || 'No message'}`;
+    window.open(`https://wa.me/233240431198?text=${text}`, '_blank');
+  }
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.background = window.scrollY > 50 ? 'rgba(13,13,13,0.99)' : 'rgba(13,13,13,0.97)';
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.service-card, .gallery-item, .contact-item').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
