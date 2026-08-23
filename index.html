@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akwat Papa Printing Services | Quality Prints in Kumasi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akwat Papa Printing Services | Quality Prints in Kumasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --wine: #7B2D3E; --wine-dark: #4A1020; --wine-light: #A3405A;
@@ -58,7 +59,45 @@
     .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
     .service-category { margin-bottom: 52px; }
     .category-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--wine); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--light-gray); }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .carousel-wrap { position: relative; }
+    .services-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 20px;
+      padding-bottom: 14px;
+      scrollbar-width: none;
+    }
+    .services-grid::-webkit-scrollbar { display: none; }
+    .service-card {
+      flex: 0 0 auto;
+      width: 240px;
+      scroll-snap-align: start;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px; height: 40px;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 16px;
+      color: var(--wine);
+      z-index: 5;
+      transition: background 0.2s;
+    }
+    .carousel-arrow:hover { background: var(--wine); color: var(--white); }
+    .carousel-arrow.prev { left: -8px; }
+    .carousel-arrow.next { right: -8px; }
+    @media (max-width: 700px) {
+      .carousel-arrow { display: none; }
+      .service-card { width: 200px; }
+    }
     .service-card { background: var(--white); border-radius: 10px; overflow: hidden; border: 1px solid var(--light-gray); transition: all 0.3s; }
     .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,45,62,0.12); }
     .service-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
@@ -145,435 +184,433 @@
   </style>
 </head>
 <body>
-
 <nav>
-  <a href="#home" class="nav-logo">
-    <img src="logo.jpg" alt="APPS Logo">
-    <div class="nav-logo-text">
-      <span>Akwat Papa</span>
-      <span>Printing Services</span>
-    </div>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-  </ul>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+<a class="nav-logo" href="#home">
+<img alt="APPS Logo" src="logo.jpg"/>
+<div class="nav-logo-text">
+<span>Akwat Papa</span>
+<span>Printing Services</span>
+</div>
+</a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a class="nav-cta" href="#contact">Contact Us</a></li>
+</ul>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
 </nav>
-
 <section id="home">
-  <div class="hero-bg-img">
-    <img src="shop-front.jpg" alt="Akwat Papa Printing Services">
-  </div>
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span>Aputuogya, Kumasi — Ghana</span></div>
-    <h1 class="hero-title">We Provide Your<br><em>Printing Solutions</em></h1>
-    <p class="hero-subtitle">Your No. 1 Printing Solution in Kumasi. From DTF printing to vehicle branding, embroidery to photo shoots — we deliver quality that makes your brand stand out.</p>
-    <div class="hero-buttons">
-      <a href="#services" class="btn-primary">Our Services</a>
-      <a href="#contact" class="btn-outline">Get a Quote</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>5+</strong><span>Years Experience</span></div>
-      <div class="hero-stat"><strong>500+</strong><span>Happy Clients</span></div>
-      <div class="hero-stat"><strong>40+</strong><span>Services</span></div>
-    </div>
-  </div>
+<div class="hero-bg-img">
+<img alt="Akwat Papa Printing Services" src="shop-front.jpg"/>
+</div>
+<div class="hero-content">
+<div class="hero-eyebrow"><span>Aputuogya, Kumasi — Ghana</span></div>
+<h1 class="hero-title">We Provide Your<br/><em>Printing Solutions</em></h1>
+<p class="hero-subtitle">Your No. 1 Printing Solution in Kumasi. From DTF printing to vehicle branding, embroidery to photo shoots — we deliver quality that makes your brand stand out.</p>
+<div class="hero-buttons">
+<a class="btn-primary" href="#services">Our Services</a>
+<a class="btn-outline" href="#contact">Get a Quote</a>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><strong>5+</strong><span>Years Experience</span></div>
+<div class="hero-stat"><strong>500+</strong><span>Happy Clients</span></div>
+<div class="hero-stat"><strong>40+</strong><span>Services</span></div>
+</div>
+</div>
 </section>
-
 <section id="services">
-  <div class="services-header">
-    <div>
-      <div class="section-label"><span>What We Do</span></div>
-      <h2 class="section-title">Our Printing Services</h2>
-      <p class="section-subtitle">Over 40 professional printing and design services for all your needs.</p>
-    </div>
-    <a href="#contact" class="btn-primary">Get a Quote</a>
-  </div>
-
-  <!-- Fabric & Apparel -->
-  <div class="service-category">
-    <div class="category-title">👕 Fabric & Apparel</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="dtf-printing.jpg" alt="DTF Printing">
-        <div class="service-card-body"><span class="service-tag">Popular</span><h3>DTF Printing</h3><p>A2 Direct-to-Film printing for vibrant, durable transfers on any fabric type.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="tshirt-front.jpg" alt="T-Shirt Printing">
-        <div class="service-card-body"><h3>T-Shirt Printing</h3><p>Custom t-shirt printing for businesses, salons, groups and events.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="cloth-printing.jpg" alt="Cloth Printing">
-        <div class="service-card-body"><h3>Cloth Printing</h3><p>Beautiful custom designs printed directly onto fabric and cloth materials.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="funeral-cloth.jpg" alt="Funeral Cloth Printing">
-        <div class="service-card-body"><h3>Funeral Cloth Printing</h3><p>Custom funeral cloth printed with the portrait and details of the deceased.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="embroidery.jpg" alt="Embroidery">
-        <div class="service-card-body"><span class="service-tag">Premium</span><h3>Embroidery</h3><p>Professional embroidery for uniforms, caps, bags and corporate merchandise.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="uniforms.jpg" alt="Workwear Printing">
-        <div class="service-card-body"><h3>Workwear & School Uniforms</h3><p>Branded uniforms, workwear and school uniform printing and embroidery.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Large Format & Signage -->
-  <div class="service-category">
-    <div class="category-title">🎌 Large Format & Signage</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="banner-printing.jpg" alt="Banner Printing">
-        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Banner & Flex Printing</h3><p>Large format banners and flex prints for events, promotions and advertising.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="large-format-printing.jpg" alt="Poster Printing">
-        <div class="service-card-body"><h3>Poster Printing</h3><p>Eye-catching posters for funerals, events, churches and promotions.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="vehicle-branding1.jpg" alt="Vehicle Branding">
-        <div class="service-card-body"><span class="service-tag">Premium</span><h3>Vehicle Branding</h3><p>Full vehicle wraps and branding to promote your business on the road.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="vehicle-branding2.jpg" alt="Vehicle Branding Side">
-        <div class="service-card-body"><h3>Truck & Van Branding</h3><p>Complete truck and van body branding with vibrant, weather-resistant prints.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Funeral Items -->
-  <div class="service-category">
-    <div class="category-title">🕊️ Funeral & Memorial Items</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="funeral-poster.jpg" alt="Funeral Poster">
-        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Funeral Announcement Posters</h3><p>Respectful and beautifully designed funeral announcement posters.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="funeral-fan.jpg" alt="Funeral Fan">
-        <div class="service-card-body"><h3>Funeral Fans</h3><p>Custom printed hand fans with the portrait and details of the deceased.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="funeral-keychain.jpg" alt="Funeral Keychain">
-        <div class="service-card-body"><h3>Funeral Keychains</h3><p>Custom memorial keychains with photos as lasting remembrance gifts.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="funeral-tshirt.jpg" alt="Funeral T-Shirt">
-        <div class="service-card-body"><h3>Funeral T-Shirts</h3><p>Custom printed memorial t-shirts with portrait and details of the deceased.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="funeral-card.jpg" alt="Funeral Card">
-        <div class="service-card-body"><h3>Funeral Cards & Booklets</h3><p>Professional funeral cards and ceremony booklets for burial services.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="funeral-cloth.jpg" alt="Funeral Cloth">
-        <div class="service-card-body"><h3>Memorial Cloth Printing</h3><p>Custom printed memorial cloth for funeral and remembrance ceremonies.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paper & Cardstock -->
-  <div class="service-category">
-    <div class="category-title">📄 Paper & Cardstock</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="flyer-design.jpg" alt="Brochures & Flyers">
-        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Brochures & Flyers</h3><p>Eye-catching flyers and brochures to promote your business and services.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="business-card.jpg" alt="Business Cards">
-        <div class="service-card-body"><h3>Business Cards</h3><p>Professional business cards that make a lasting first impression.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="product-label.jpg" alt="Product Labels">
-        <div class="service-card-body"><h3>Product Labels</h3><p>Professional labels for bottles, jars, food products and packaging.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="letter-head.jpg" alt="Letterheads">
-        <div class="service-card-body"><h3>Letterheads & Envelopes</h3><p>Branded letterheads and envelopes for official correspondence.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="receipt-design.jpg" alt="Receipt Books">
-        <div class="service-card-body"><h3>Receipt Books</h3><p>Custom receipt books and invoice pads for businesses and traders.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Event & Personal -->
-  <div class="service-category">
-    <div class="category-title">💌 Event & Personal</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="birthday-card.jpg" alt="Birthday Cards">
-        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Birthday Cards & Invitations</h3><p>Beautiful birthday cards and invitation designs for all celebrations.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="wedding.jpg" alt="Wedding Cards">
-        <div class="service-card-body"><h3>Wedding Invitation Cards</h3><p>Elegant wedding invitation cards and programs for your special day.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="graduation.jpg" alt="Graduation Cards">
-        <div class="service-card-body"><h3>Graduation Cards & Booklets</h3><p>Professional graduation cards and ceremony booklets for schools.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Branded Merchandise -->
-  <div class="service-category">
-    <div class="category-title">🎁 Branded Merchandise</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="brandedmug.jpg" alt="Branded Mugs">
-        <div class="service-card-body"><h3>Branded Mugs & Cups</h3><p>Custom printed mugs and cups with your logo for gifts and promotions.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="keychain.jpg" alt="Custom Keychains">
-        <div class="service-card-body"><h3>Custom Keychains</h3><p>Personalised photo keychains for gifts, events and memorials.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="sticker.jpg" alt="Stickers">
-        <div class="service-card-body"><h3>Sticker Printing</h3><p>Custom stickers for product labeling, branding and promotions.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="tote-bag.jpg" alt="Branded Bags">
-        <div class="service-card-body"><h3>Branded Bags & Tote Bags</h3><p>Custom printed bags for businesses, events and retail purposes.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="calendar.jpg" alt="Calendars">
-        <div class="service-card-body"><h3>Calendars & Hang Tags</h3><p>Branded wall calendars and custom hang tags for businesses.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Photography Studio -->
-  <div class="service-category">
-    <div class="category-title">📸 Photography Studio</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="photo-shoot1.jpg" alt="Studio Photo Shoot">
-        <div class="service-card-body"><span class="service-tag">New</span><h3>Studio Photo Shoot</h3><p>Professional studio photography for portraits, fashion and beauty shoots.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="photo-shoot2.jpg" alt="Birthday Shoot">
-        <div class="service-card-body"><h3>Birthday & Event Shoots</h3><p>Memorable birthday, wedding, funeral and event photography sessions.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="fashion-shoot.jpg" alt="Fashion Shoot">
-        <div class="service-card-body"><h3>Fashion & Outdoor Shoots</h3><p>Creative fashion, outdoor and portrait photography with professional editing.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="frame-printing.jpg" alt="Frame Printing">
-        <div class="service-card-body"><h3>Photo Printing & Framing</h3><p>High quality photo prints and beautifully framed photos for your home or office.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Design Services -->
-  <div class="service-category">
-    <div class="category-title">🎨 Design Services</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="logo-design.jpg" alt="Logo Design">
-        <div class="service-card-body"><span class="service-tag">Popular</span><h3>Logo Design</h3><p>Professional logo design for businesses, schools, churches and organizations.</p></div>
-      </div>
-      <div class="service-card">
-        <img src="graphic-design.jpg" alt="Graphic Design">
-        <div class="service-card-body"><h3>Graphic Design</h3><p>Creative graphic design for all your print and digital marketing materials.</p></div>
-      </div>
-    </div>
-  </div>
+<div class="services-header">
+<div>
+<div class="section-label"><span>What We Do</span></div>
+<h2 class="section-title">Our Printing Services</h2>
+<p class="section-subtitle">Over 40 professional printing and design services for all your needs.</p>
+</div>
+<a class="btn-primary" href="#contact">Get a Quote</a>
+</div>
+<!-- Fabric & Apparel -->
+<div class="service-category">
+<div class="category-title">👕 Fabric &amp; Apparel</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="DTF Printing" src="dtf-printing.jpg"/>
+<div class="service-card-body"><span class="service-tag">Popular</span><h3>DTF Printing</h3><p>A2 Direct-to-Film printing for vibrant, durable transfers on any fabric type.</p></div>
+</div>
+<div class="service-card">
+<img alt="T-Shirt Printing" src="tshirt-front.jpg"/>
+<div class="service-card-body"><h3>T-Shirt Printing</h3><p>Custom t-shirt printing for businesses, salons, groups and events.</p></div>
+</div>
+<div class="service-card">
+<img alt="Cloth Printing" src="cloth-printing.jpg"/>
+<div class="service-card-body"><h3>Cloth Printing</h3><p>Beautiful custom designs printed directly onto fabric and cloth materials.</p></div>
+</div>
+<div class="service-card">
+<img alt="Funeral Cloth Printing" src="funeral-cloth.jpg"/>
+<div class="service-card-body"><h3>Funeral Cloth Printing</h3><p>Custom funeral cloth printed with the portrait and details of the deceased.</p></div>
+</div>
+<div class="service-card">
+<img alt="Embroidery" src="embroidery.jpg"/>
+<div class="service-card-body"><span class="service-tag">Premium</span><h3>Embroidery</h3><p>Professional embroidery for uniforms, caps, bags and corporate merchandise.</p></div>
+</div>
+<div class="service-card">
+<img alt="Workwear Printing" src="uniforms.jpg"/>
+<div class="service-card-body"><h3>Workwear &amp; School Uniforms</h3><p>Branded uniforms, workwear and school uniform printing and embroidery.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Large Format & Signage -->
+<div class="service-category">
+<div class="category-title">🎌 Large Format &amp; Signage</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Banner Printing" src="banner-printing.jpg"/>
+<div class="service-card-body"><span class="service-tag">Popular</span><h3>Banner &amp; Flex Printing</h3><p>Large format banners and flex prints for events, promotions and advertising.</p></div>
+</div>
+<div class="service-card">
+<img alt="Poster Printing" src="large-format-printing.jpg"/>
+<div class="service-card-body"><h3>Poster Printing</h3><p>Eye-catching posters for funerals, events, churches and promotions.</p></div>
+</div>
+<div class="service-card">
+<img alt="Vehicle Branding" src="vehicle-branding1.jpg"/>
+<div class="service-card-body"><span class="service-tag">Premium</span><h3>Vehicle Branding</h3><p>Full vehicle wraps and branding to promote your business on the road.</p></div>
+</div>
+<div class="service-card">
+<img alt="Vehicle Branding Side" src="vehicle-branding2.jpg"/>
+<div class="service-card-body"><h3>Truck &amp; Van Branding</h3><p>Complete truck and van body branding with vibrant, weather-resistant prints.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Funeral Items -->
+<div class="service-category">
+<div class="category-title">🕊️ Funeral &amp; Memorial Items</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Funeral Poster" src="funeral-poster.jpg"/>
+<div class="service-card-body"><span class="service-tag">Popular</span><h3>Funeral Announcement Posters</h3><p>Respectful and beautifully designed funeral announcement posters.</p></div>
+</div>
+<div class="service-card">
+<img alt="Funeral Fan" src="funeral-fan.jpg"/>
+<div class="service-card-body"><h3>Funeral Fans</h3><p>Custom printed hand fans with the portrait and details of the deceased.</p></div>
+</div>
+<div class="service-card">
+<img alt="Funeral Keychain" src="funeral-keychain.jpg"/>
+<div class="service-card-body"><h3>Funeral Keychains</h3><p>Custom memorial keychains with photos as lasting remembrance gifts.</p></div>
+</div>
+<div class="service-card">
+<img alt="Funeral T-Shirt" src="funeral-tshirt.jpg"/>
+<div class="service-card-body"><h3>Funeral T-Shirts</h3><p>Custom printed memorial t-shirts with portrait and details of the deceased.</p></div>
+</div>
+<div class="service-card">
+<img alt="Funeral Card" src="funeral-card.jpg"/>
+<div class="service-card-body"><h3>Funeral Cards &amp; Booklets</h3><p>Professional funeral cards and ceremony booklets for burial services.</p></div>
+</div>
+<div class="service-card">
+<img alt="Funeral Cloth" src="funeral-cloth.jpg"/>
+<div class="service-card-body"><h3>Memorial Cloth Printing</h3><p>Custom printed memorial cloth for funeral and remembrance ceremonies.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Paper & Cardstock -->
+<div class="service-category">
+<div class="category-title">📄 Paper &amp; Cardstock</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Brochures &amp; Flyers" src="flyer-design.jpg"/>
+<div class="service-card-body"><span class="service-tag">Popular</span><h3>Brochures &amp; Flyers</h3><p>Eye-catching flyers and brochures to promote your business and services.</p></div>
+</div>
+<div class="service-card">
+<img alt="Business Cards" src="business-card.jpg"/>
+<div class="service-card-body"><h3>Business Cards</h3><p>Professional business cards that make a lasting first impression.</p></div>
+</div>
+<div class="service-card">
+<img alt="Product Labels" src="product-label.jpg"/>
+<div class="service-card-body"><h3>Product Labels</h3><p>Professional labels for bottles, jars, food products and packaging.</p></div>
+</div>
+<div class="service-card">
+<img alt="Letterheads" src="letter-head.jpg"/>
+<div class="service-card-body"><h3>Letterheads &amp; Envelopes</h3><p>Branded letterheads and envelopes for official correspondence.</p></div>
+</div>
+<div class="service-card">
+<img alt="Receipt Books" src="receipt-design.jpg"/>
+<div class="service-card-body"><h3>Receipt Books</h3><p>Custom receipt books and invoice pads for businesses and traders.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Event & Personal -->
+<div class="service-category">
+<div class="category-title">💌 Event &amp; Personal</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Birthday Cards" src="birthday-card.jpg"/>
+<div class="service-card-body"><span class="service-tag">Popular</span><h3>Birthday Cards &amp; Invitations</h3><p>Beautiful birthday cards and invitation designs for all celebrations.</p></div>
+</div>
+<div class="service-card">
+<img alt="Wedding Cards" src="wedding.jpg"/>
+<div class="service-card-body"><h3>Wedding Invitation Cards</h3><p>Elegant wedding invitation cards and programs for your special day.</p></div>
+</div>
+<div class="service-card">
+<img alt="Graduation Cards" src="graduation.jpg"/>
+<div class="service-card-body"><h3>Graduation Cards &amp; Booklets</h3><p>Professional graduation cards and ceremony booklets for schools.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Branded Merchandise -->
+<div class="service-category">
+<div class="category-title">🎁 Branded Merchandise</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Branded Mugs" src="brandedmug.jpg"/>
+<div class="service-card-body"><h3>Branded Mugs &amp; Cups</h3><p>Custom printed mugs and cups with your logo for gifts and promotions.</p></div>
+</div>
+<div class="service-card">
+<img alt="Custom Keychains" src="keychain.jpg"/>
+<div class="service-card-body"><h3>Custom Keychains</h3><p>Personalised photo keychains for gifts, events and memorials.</p></div>
+</div>
+<div class="service-card">
+<img alt="Stickers" src="sticker.jpg"/>
+<div class="service-card-body"><h3>Sticker Printing</h3><p>Custom stickers for product labeling, branding and promotions.</p></div>
+</div>
+<div class="service-card">
+<img alt="Branded Bags" src="tote-bag.jpg"/>
+<div class="service-card-body"><h3>Branded Bags &amp; Tote Bags</h3><p>Custom printed bags for businesses, events and retail purposes.</p></div>
+</div>
+<div class="service-card">
+<img alt="Calendars" src="calendar.jpg"/>
+<div class="service-card-body"><h3>Calendars &amp; Hang Tags</h3><p>Branded wall calendars and custom hang tags for businesses.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Photography Studio -->
+<div class="service-category">
+<div class="category-title">📸 Photography Studio</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Studio Photo Shoot" src="photo-shoot1.jpg"/>
+<div class="service-card-body"><span class="service-tag">New</span><h3>Studio Photo Shoot</h3><p>Professional studio photography for portraits, fashion and beauty shoots.</p></div>
+</div>
+<div class="service-card">
+<img alt="Birthday Shoot" src="photo-shoot2.jpg"/>
+<div class="service-card-body"><h3>Birthday &amp; Event Shoots</h3><p>Memorable birthday, wedding, funeral and event photography sessions.</p></div>
+</div>
+<div class="service-card">
+<img alt="Fashion Shoot" src="fashion-shoot.jpg"/>
+<div class="service-card-body"><h3>Fashion &amp; Outdoor Shoots</h3><p>Creative fashion, outdoor and portrait photography with professional editing.</p></div>
+</div>
+<div class="service-card">
+<img alt="Frame Printing" src="frame-printing.jpg"/>
+<div class="service-card-body"><h3>Photo Printing &amp; Framing</h3><p>High quality photo prints and beautifully framed photos for your home or office.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
+<!-- Design Services -->
+<div class="service-category">
+<div class="category-title">🎨 Design Services</div>
+<div class="carousel-wrap"><button aria-label="Previous" class="carousel-arrow prev" onclick="scrollCarousel(this)">‹</button><div class="services-grid">
+<div class="service-card">
+<img alt="Logo Design" src="logo-design.jpg"/>
+<div class="service-card-body"><span class="service-tag">Popular</span><h3>Logo Design</h3><p>Professional logo design for businesses, schools, churches and organizations.</p></div>
+</div>
+<div class="service-card">
+<img alt="Graphic Design" src="graphic-design.jpg"/>
+<div class="service-card-body"><h3>Graphic Design</h3><p>Creative graphic design for all your print and digital marketing materials.</p></div>
+</div>
+</div><button aria-label="Next" class="carousel-arrow next" onclick="scrollCarousel(this)">›</button></div>
+</div>
 </section>
-
 <!-- GALLERY -->
 <section id="gallery">
-  <div class="gallery-header">
-    <div class="section-label"><span>Our Work</span></div>
-    <h2 class="section-title">Print Gallery</h2>
-    <p class="section-subtitle">Real quality printing work from our shop in Aputuogya, Kumasi.</p>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="shop-front.jpg" alt="Akwat Papa Shop">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Our Shop — Aputuogya</span>
-    </div>
-    <div class="gallery-item">
-      <img src="vehicle-branding1.jpg" alt="Vehicle Branding">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Vehicle Branding</span>
-    </div>
-    <div class="gallery-item">
-      <img src="photo-shoot1.jpg" alt="Photo Studio">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Photo Studio</span>
-    </div>
-    <div class="gallery-item">
-      <img src="funeral-tshirt.jpg" alt="Funeral T-Shirt">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Funeral T-Shirt</span>
-    </div>
-    <div class="gallery-item">
-      <img src="funeral-fan.jpg" alt="Funeral Fan">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Funeral Fan</span>
-    </div>
-    <div class="gallery-item">
-      <img src="large-format-printing.jpg" alt="Large Format Printing">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Large Format Printing</span>
-    </div>
-    <div class="gallery-item">
-      <img src="tshirt-front.jpg" alt="T-Shirt Printing">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">T-Shirt Printing</span>
-    </div>
-    <div class="gallery-item">
-      <img src="brandedmug.jpg" alt="Branded Mugs">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Branded Mugs</span>
-    </div>
-    <div class="gallery-item">
-      <img src="df.jpg" alt="Frame Printing">
-      <div class="gallery-overlay"></div>
-      <span class="gallery-label">Frame Printing</span>
-    </div>
-  </div>
+<div class="gallery-header">
+<div class="section-label"><span>Our Work</span></div>
+<h2 class="section-title">Print Gallery</h2>
+<p class="section-subtitle">Real quality printing work from our shop in Aputuogya, Kumasi.</p>
+</div>
+<div class="gallery-grid">
+<div class="gallery-item">
+<img alt="Akwat Papa Shop" src="shop-front.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Our Shop — Aputuogya</span>
+</div>
+<div class="gallery-item">
+<img alt="Vehicle Branding" src="vehicle-branding1.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Vehicle Branding</span>
+</div>
+<div class="gallery-item">
+<img alt="Photo Studio" src="photo-shoot1.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Photo Studio</span>
+</div>
+<div class="gallery-item">
+<img alt="Funeral T-Shirt" src="funeral-tshirt.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Funeral T-Shirt</span>
+</div>
+<div class="gallery-item">
+<img alt="Funeral Fan" src="funeral-fan.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Funeral Fan</span>
+</div>
+<div class="gallery-item">
+<img alt="Large Format Printing" src="large-format-printing.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Large Format Printing</span>
+</div>
+<div class="gallery-item">
+<img alt="T-Shirt Printing" src="tshirt-front.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">T-Shirt Printing</span>
+</div>
+<div class="gallery-item">
+<img alt="Branded Mugs" src="brandedmug.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Branded Mugs</span>
+</div>
+<div class="gallery-item">
+<img alt="Frame Printing" src="df.jpg"/>
+<div class="gallery-overlay"></div>
+<span class="gallery-label">Frame Printing</span>
+</div>
+</div>
 </section>
-
 <!-- PRICING -->
 <section id="pricing">
-  <div class="section-label"><span>Pricing</span></div>
-  <h2 class="section-title">Flexible Pricing for Every Need</h2>
-  <p class="section-subtitle" style="color:rgba(255,255,255,0.4);margin:0 auto;">We tailor our pricing to match your specific printing needs and budget.</p>
-  <div class="pricing-card">
-    <div class="pricing-icon">💬</div>
-    <h3>Contact Us for Pricing</h3>
-    <p>Every print job is unique. Contact us with your requirements and we'll give you the best quote tailored to your needs and budget.</p>
-    <ul class="pricing-features">
-      <li>Competitive and fair pricing</li>
-      <li>Bulk order discounts available</li>
-      <li>No hidden charges</li>
-      <li>Fast turnaround times</li>
-      <li>Free consultation on your project</li>
-    </ul>
-    <a href="https://wa.me/233240431198?text=Hello! I'd like to get a quote for printing services." class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
-  </div>
+<div class="section-label"><span>Pricing</span></div>
+<h2 class="section-title">Flexible Pricing for Every Need</h2>
+<p class="section-subtitle" style="color:rgba(255,255,255,0.4);margin:0 auto;">We tailor our pricing to match your specific printing needs and budget.</p>
+<div class="pricing-card">
+<div class="pricing-icon">💬</div>
+<h3>Contact Us for Pricing</h3>
+<p>Every print job is unique. Contact us with your requirements and we'll give you the best quote tailored to your needs and budget.</p>
+<ul class="pricing-features">
+<li>Competitive and fair pricing</li>
+<li>Bulk order discounts available</li>
+<li>No hidden charges</li>
+<li>Fast turnaround times</li>
+<li>Free consultation on your project</li>
+</ul>
+<a class="whatsapp-btn" href="https://wa.me/233240431198?text=Hello! I'd like to get a quote for printing services." target="_blank">💬 Chat on WhatsApp</a>
+</div>
 </section>
-
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label"><span>Get In Touch</span></div>
-  <h2 class="section-title">Contact Us</h2>
-  <p class="section-subtitle">Ready to start your print project? Reach out to us today.</p>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div class="contact-item-text"><strong>Location</strong><span>Aputuogya, Opposite Education Office, Kumasi, Ghana</span></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">📞</div>
-        <div class="contact-item-text"><strong>Phone</strong><a href="tel:+233240431198">0240 431 198 / 0592 718 096</a></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">✉️</div>
-        <div class="contact-item-text"><strong>Email</strong><a href="mailto:akwatpapaprints@gmail.com">akwatpapaprints@gmail.com</a></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">🕐</div>
-        <div class="contact-item-text"><strong>Working Hours</strong><span>Mon – Sat: 8:00 AM – 6:00 PM</span></div>
-      </div>
-      <a href="https://wa.me/233240431198?text=Hello! I'd like to inquire about your printing services." class="whatsapp-btn" target="_blank">💬 Chat on WhatsApp</a>
-    </div>
-    <div class="contact-form">
-      <h3>Send us a Message</h3>
-      <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
-      <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="0240 000 000"></div>
-      <div class="form-group">
-        <label>Service Needed</label>
-        <select>
-          <option value="">Select a service...</option>
-          <optgroup label="Fabric & Apparel">
-            <option>DTF Printing</option><option>T-Shirt Printing</option>
-            <option>Cloth Printing</option><option>Embroidery</option>
-            <option>School Uniform Embroidery</option><option>Workwear Printing</option>
-          </optgroup>
-          <optgroup label="Large Format & Signage">
-            <option>Banner & Flex Printing</option><option>Poster Printing</option>
-            <option>Vehicle Branding</option><option>Truck & Van Branding</option>
-          </optgroup>
-          <optgroup label="Funeral & Memorial Items">
-            <option>Funeral Announcement Posters</option><option>Funeral Fans</option>
-            <option>Funeral Keychains</option><option>Funeral T-Shirts</option>
-            <option>Funeral Cards & Booklets</option><option>Memorial Cloth Printing</option>
-          </optgroup>
-          <optgroup label="Paper & Cardstock">
-            <option>Business Cards</option><option>Brochures & Flyers</option>
-            <option>Product Labels</option><option>Letterheads</option>
-            <option>Envelope Printing</option><option>Receipt Books</option>
-          </optgroup>
-          <optgroup label="Event & Personal">
-            <option>Wedding Invitation Cards</option><option>Birthday Cards & Invitations</option>
-            <option>Graduation Cards & Booklets</option>
-          </optgroup>
-          <optgroup label="Branded Merchandise">
-            <option>Branded Mugs & Cups</option><option>Custom Keychains</option>
-            <option>Sticker Printing</option><option>Branded Bags</option>
-            <option>Calendars</option><option>Hang Tags</option>
-          </optgroup>
-          <optgroup label="Photography">
-            <option>Studio Photo Shoot</option><option>Outdoor Photography</option>
-            <option>Photo Printing & Framing</option><option>Photo Editing</option>
-          </optgroup>
-          <optgroup label="Design Services">
-            <option>Logo Design</option><option>Graphic Design</option>
-          </optgroup>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your printing needs..."></textarea></div>
-      <button class="form-submit" onclick="sendMessage()">Send Message via WhatsApp</button>
-    </div>
-  </div>
+<div class="section-label"><span>Get In Touch</span></div>
+<h2 class="section-title">Contact Us</h2>
+<p class="section-subtitle">Ready to start your print project? Reach out to us today.</p>
+<div class="contact-grid">
+<div class="contact-info">
+<div class="contact-item">
+<div class="contact-item-icon">📍</div>
+<div class="contact-item-text"><strong>Location</strong><span>Aputuogya, Opposite Education Office, Kumasi, Ghana</span></div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">📞</div>
+<div class="contact-item-text"><strong>Phone</strong><a href="tel:+233240431198">0240 431 198 / 0592 718 096</a></div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">✉️</div>
+<div class="contact-item-text"><strong>Email</strong><a href="mailto:akwatpapaprints@gmail.com">akwatpapaprints@gmail.com</a></div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">🕐</div>
+<div class="contact-item-text"><strong>Working Hours</strong><span>Mon – Sat: 8:00 AM – 6:00 PM</span></div>
+</div>
+<a class="whatsapp-btn" href="https://wa.me/233240431198?text=Hello! I'd like to inquire about your printing services." target="_blank">💬 Chat on WhatsApp</a>
+<div style="margin-top: 8px; padding: 24px; background: var(--off-white); border: 1px solid var(--light-gray); border-radius: 12px; text-align: center;">
+<h3 style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin: 0 0 6px;">Track Your Order</h3>
+<p style="font-size: 13px; color: var(--gray); margin: 0 0 16px;">Scan to submit a print request or check your order status</p>
+<img alt="Scan to track your Akwat Papa print order" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&amp;color=13-13-13&amp;bgcolor=248-245-242&amp;data=https://secretary-portal.onrender.com/order.html" style="width: 160px; height: 160px; border-radius: 8px; margin-bottom: 14px;"/>
+<br/>
+<a class="btn-primary" href="https://secretary-portal.onrender.com/order.html" style="display: inline-block;" target="_blank">Open Order Tracker</a>
+</div>
+</div>
+<div class="contact-form">
+<h3>Send us a Message</h3>
+<div class="form-group"><label>Your Name</label><input placeholder="John Doe" type="text"/></div>
+<div class="form-group"><label>Phone / WhatsApp</label><input placeholder="0240 000 000" type="tel"/></div>
+<div class="form-group">
+<label>Service Needed</label>
+<select>
+<option value="">Select a service...</option>
+<optgroup label="Fabric &amp; Apparel">
+<option>DTF Printing</option><option>T-Shirt Printing</option>
+<option>Cloth Printing</option><option>Embroidery</option>
+<option>School Uniform Embroidery</option><option>Workwear Printing</option>
+</optgroup>
+<optgroup label="Large Format &amp; Signage">
+<option>Banner &amp; Flex Printing</option><option>Poster Printing</option>
+<option>Vehicle Branding</option><option>Truck &amp; Van Branding</option>
+</optgroup>
+<optgroup label="Funeral &amp; Memorial Items">
+<option>Funeral Announcement Posters</option><option>Funeral Fans</option>
+<option>Funeral Keychains</option><option>Funeral T-Shirts</option>
+<option>Funeral Cards &amp; Booklets</option><option>Memorial Cloth Printing</option>
+</optgroup>
+<optgroup label="Paper &amp; Cardstock">
+<option>Business Cards</option><option>Brochures &amp; Flyers</option>
+<option>Product Labels</option><option>Letterheads</option>
+<option>Envelope Printing</option><option>Receipt Books</option>
+</optgroup>
+<optgroup label="Event &amp; Personal">
+<option>Wedding Invitation Cards</option><option>Birthday Cards &amp; Invitations</option>
+<option>Graduation Cards &amp; Booklets</option>
+</optgroup>
+<optgroup label="Branded Merchandise">
+<option>Branded Mugs &amp; Cups</option><option>Custom Keychains</option>
+<option>Sticker Printing</option><option>Branded Bags</option>
+<option>Calendars</option><option>Hang Tags</option>
+</optgroup>
+<optgroup label="Photography">
+<option>Studio Photo Shoot</option><option>Outdoor Photography</option>
+<option>Photo Printing &amp; Framing</option><option>Photo Editing</option>
+</optgroup>
+<optgroup label="Design Services">
+<option>Logo Design</option><option>Graphic Design</option>
+</optgroup>
+<option>Other</option>
+</select>
+</div>
+<div class="form-group"><label>Message</label><textarea placeholder="Tell us about your printing needs..."></textarea></div>
+<button class="form-submit" onclick="sendMessage()">Send Message via WhatsApp</button>
+</div>
+</div>
 </section>
-
 <footer>
-  <div class="footer-top">
-    <div class="footer-logo">
-      <img src="logo.jpg" alt="APPS Logo">
-      <div class="footer-logo-text">
-        <span>Akwat Papa Printing Services</span>
-        <span>Aputuogya, Kumasi — Ghana</span>
-      </div>
-    </div>
-    <ul class="footer-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 Akwat Papa Printing Services. All rights reserved.</p>
-    <p>Your No. 1 Printing Solution — <span>Aputuogya, Kumasi</span></p>
-  </div>
+<div class="footer-top">
+<div class="footer-logo">
+<img alt="APPS Logo" src="logo.jpg"/>
+<div class="footer-logo-text">
+<span>Akwat Papa Printing Services</span>
+<span>Aputuogya, Kumasi — Ghana</span>
+</div>
+</div>
+<ul class="footer-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Akwat Papa Printing Services. All rights reserved.</p>
+<p>Your No. 1 Printing Solution — <span>Aputuogya, Kumasi</span></p>
+</div>
 </footer>
-
 <script>
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
+  function scrollCarousel(btn) {
+    const wrap = btn.closest('.carousel-wrap');
+    const track = wrap.querySelector('.services-grid');
+    const cardWidth = track.querySelector('.service-card').offsetWidth + 20; // +gap
+    const amount = btn.classList.contains('next') ? cardWidth * 2 : -cardWidth * 2;
+    track.scrollBy({ left: amount, behavior: 'smooth' });
+  }
   function sendMessage() {
     const name = document.querySelector('.contact-form input[type="text"]').value;
     const phone = document.querySelector('.contact-form input[type="tel"]').value;
