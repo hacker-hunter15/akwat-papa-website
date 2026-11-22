@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online ordering is under maintenance | APPS</title>
+<style>
+  :root { --wine:#5E0B1F; --wine-deep:#3E0613; --paper:#FFFFFF; --ink:#000000; --mute:#E9D5DA; }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; }
+  body {
+    background:var(--wine); color:var(--paper);
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  .sheet {
+    position:relative; width:100%; max-width:520px;
+    background:var(--wine-deep); padding:44px 32px 36px;
+  }
+  /* print crop marks in the corners */
+  .sheet::before,.sheet::after,.sheet i::before,.sheet i::after {
+    content:""; position:absolute; width:18px; height:18px; border:0 solid var(--mute);
+  }
+  .sheet::before { top:-10px; left:-10px; border-width:1px 0 0 1px; }
+  .sheet::after { top:-10px; right:-10px; border-width:1px 1px 0 0; }
+  .sheet i::before { bottom:-10px; left:-10px; border-width:0 0 1px 1px; }
+  .sheet i::after { bottom:-10px; right:-10px; border-width:0 1px 1px 0; }
+  .brand { font-size:.95rem; letter-spacing:.02em; color:var(--mute); margin:0 0 28px; }
+  h1 {
+    font-family:Georgia,"Times New Roman",serif; font-weight:700;
+    font-size:clamp(1.9rem,7vw,2.6rem); line-height:1.12; margin:0 0 16px;
+  }
+  p { line-height:1.55; margin:0 0 26px; color:var(--mute); font-size:1.05rem; max-width:44ch; }
+  .actions { display:flex; flex-direction:column; gap:12px; }
+  a.btn {
+    display:block; text-align:center; text-decoration:none; font-weight:600;
+    padding:15px 18px; border-radius:4px; font-size:1.02rem;
+  }
+  a.primary { background:var(--paper); color:var(--ink); }
+  a.secondary { border:1px solid var(--mute); color:var(--paper); }
+  a.btn:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+  .shop { margin:28px 0 0; padding-top:18px; border-top:1px solid rgba(233,213,218,.3); font-size:.95rem; color:var(--mute); line-height:1.5; }
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <i></i>
+    <p class="brand">Akwat Papa Printing Services</p>
+    <h1>Online ordering is under maintenance</h1>
+    <p>We are getting the shop ready for online orders. Until it is back, bring your job to the shop or send it to us on WhatsApp.</p>
+    <div class="actions">
+      <!-- EDIT: replace 233XXXXXXXXX with your WhatsApp number (country code, no + or spaces) -->
+      <a class="btn primary" href="https://wa.me/233240431198?text=Hello%20APPS%2C%20I%20want%20to%20place%20an%20order">Order on WhatsApp</a>
+      <!-- EDIT: replace the link with your Google Maps pin for the shop -->
+      <a class="btn secondary" href="https://maps.google.com/?q=Aputuogya+Kumasi">Find the shop</a>
+    </div>
+    <p class="shop">Visit us in Aputuogya, Kumasi. Online ordering is coming soon.</p>
+  </main>
+</body>
+</html>
