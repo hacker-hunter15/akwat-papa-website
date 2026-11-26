@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Akwat Papa Printing Services | Interactive Card</title>
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 <style>
   :root { --wine:#7B1E3A; --glow:#ff8fb3; }
   html,body { margin:0; height:100%; overflow:hidden; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
@@ -34,6 +34,7 @@
 <div id="hint">Point your camera at the back of your Akwat Papa card</div>
 <div id="scan"></div>
 <div id="panel"><button id="close" aria-label="Close">&times;</button><h2 id="pt"></h2><p id="pd"></p><a id="wa" href="#">Order on WhatsApp</a></div>
+<pre id="dbg" style="position:fixed;left:8px;right:8px;bottom:70px;z-index:12;color:#fff;background:rgba(0,0,0,.7);font:12px monospace;padding:8px;border-radius:8px;margin:0;white-space:pre-wrap"></pre>
 <div id="bar">
   <a id="call" href="#">Call</a>
   <a id="track" href="#">Track order</a>
@@ -43,3 +44,34 @@
 
 <a-scene mindar-image="imageTargetSrc: ./targets.mind.txt; maxTrack: 1; uiScanning: no; uiLoading: no; uiError: no"
   color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" xr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: false">
+  <a-camera id="cam" position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
+    raycaster="far: 10000; objects: .clickable"></a-camera>
+  <a-light type="ambient" intensity="1.2"></a-light>
+  <a-light type="directional" intensity="1.4" position="0.5 1 1"></a-light>
+
+  <a-entity id="card" mindar-image-target="targetIndex: 0">
+
+    <a-entity class="item" position="-0.32 0 0" rotation="90 0 0" scale="0 0 0"
+      animation__pop="property: scale; from: 0 0 0; to: 1 1 1; dur: 700; easing: easeOutBack; startEvents: pop">
+      <a-cone radius-bottom="0.1" radius-top="0.02" height="0.3" position="0 0.15 0" open-ended="true" segments-radial="16"
+        material="color:#ff8fb3; shader:flat; opacity:0.2; transparent:true; side:double; depthWrite:false; blending:additive"></a-cone>
+      <a-ring radius-inner="0.09" radius-outer="0.105" rotation="-90 0 0" position="0 0.005 0"
+        material="color:#ff8fb3; shader:flat; opacity:0.9; transparent:true"
+        animation="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; dir: alternate; dur: 1100; loop: true; easing: easeInOutSine"></a-ring>
+      <a-entity position="0 0.28 0" animation__float="property: position; from: 0 0.26 0; to: 0 0.31 0; dir: alternate; dur: 1700; loop: true; easing: easeInOutSine">
+        <a-entity animation__spin="property: rotation; to: 0 360 0; dur: 8000; loop: true; easing: linear">
+          <!-- PLACEHOLDER: replace this block with <a-gltf-model src="./models/banner.glb" scale="0.3 0.3 0.3"></a-gltf-model> -->
+          <a-box width="0.16" height="0.4" depth="0.012" color="#7B1E3A"></a-box>
+          <a-box width="0.18" height="0.04" depth="0.03" position="0 -0.2 0" color="#eeeeee"></a-box>
+        </a-entity>
+      </a-entity>
+      <a-sphere class="clickable" data-k="banner" radius="0.2" position="0 0.28 0" material="opacity:0; transparent:true"></a-sphere>
+      <a-entity look-at="#cam" position="0 0.66 0">
+        <a-plane width="0.3" height="0.07" color="#7B1E3A"></a-plane>
+        <a-text value="Banners" align="center" width="1" position="0 0 0.01" color="#ffffff"></a-text>
+      </a-entity>
+    </a-entity>
+
+    <a-entity class="item" position="0 0 0" rotation="90 0 0" scale="0 0 0"
+      animation__pop="property: scale; from: 0 0 0; to: 1 1 1; dur: 700; easing: easeOutBack; startEvents: pop">
